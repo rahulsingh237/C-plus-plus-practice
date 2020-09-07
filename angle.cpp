@@ -16,7 +16,7 @@ int main()
 	{
 		cout<<"Right angled triangle\n";
 	}
-	else if( ((c*c) == (b*b) + (a*a)) || ((a*a)==(b*b)+(c*c)) || ((b*b)==(c*c)+(a*a)) )
+	else if( ((c*c) > (b*b) + (a*a)) || ((a*a)>(b*b)+(c*c)) || ((b*b)>(c*c)+(a*a)) )
 	{
 		cout<<"Obtuse angled triangle\n";
 	}

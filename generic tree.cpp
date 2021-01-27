@@ -22,6 +22,30 @@ void display(node* n)
     }
 }
 
+int sizeTree(node* n)
+{
+	int s=0;
+	for(node* child:n->children)
+	{
+		int cs=sizeTree(child);
+		s=s+cs;
+	}
+	s=s+1;
+	return s;
+}
+
+int maxTree(node* n)
+{
+	int m=INT_MIN;
+	for(node* child:n->children)
+	{
+		int cm=maxTree(child);
+		m=max(m,cm);
+	}
+	m=max(m,n->data);
+	
+	return m;
+}
 int main() {
 
     int arr[]={10,20,50,-1,60,-1,-1,30,70,-1,80,110,-1,120,-1,-1,90,-1,-1,40,100,-1,-1,-1};
@@ -47,5 +71,10 @@ int main() {
         }
     }
     display(root);
+    int k=sizeTree(root);
+    cout<<"\n\nTree Size:"<<k;
+    
+    int q=maxTree(root);
+    cout<<"\n\nMaximum Element:"<<q;
     return 0;
 }

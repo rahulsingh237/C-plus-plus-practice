@@ -46,6 +46,37 @@ int maxTree(node* n)
 	
 	return m;
 }
+
+int heightTree(node* n) //in terms of edges therefore height will be initialised with -1. If it is asked in terms of nodes then initialise height with 0.
+{
+	int ht=-1;
+	for(node* child:n->children)
+	{
+		int cm=heightTree(child);
+		ht=max(ht,cm);
+	}
+	ht+=1;
+	
+	return ht;
+}
+
+void traversal(node* n)
+{
+	//area 1 - before going deep into recursion - responsible for preorder
+	
+	cout<<"Node Pre "<<n->data<<endl;
+	for(node* child:n->children){
+		
+		cout<<"Edge Pre "<<n->data<<"--"<<child->data<<endl; //edge pre order
+		traversal(child);
+		cout<<"Edge Post "<<n->data<<"--"<<child->data<<endl;//edge post order
+	}
+	
+	//area 2 - coming out of recursion - responsible for post order
+	
+	cout<<"Node Post "<<n->data<<endl;
+}
+
 int main() {
 
     int arr[]={10,20,50,-1,60,-1,-1,30,70,-1,80,110,-1,120,-1,-1,90,-1,-1,40,100,-1,-1,-1};
@@ -76,5 +107,11 @@ int main() {
     
     int q=maxTree(root);
     cout<<"\n\nMaximum Element:"<<q;
+    
+    int w=heightTree(root);
+    cout<<"\n\nHeight of tree(in terms of edges):"<<w<<endl<<endl;
+    
+    cout<<"traversal : "<<endl;
+    traversal(root);
     return 0;
 }

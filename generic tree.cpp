@@ -77,6 +77,22 @@ void traversal(node* n)
 	cout<<"Node Post "<<n->data<<endl;
 }
 
+/*void levelorder(node* n)
+{
+	deque<node*> q;
+	q.push_back(n);
+	while(!q.empty())
+	{
+		q.pop_back();
+		cout<<n->data<<"  ";
+		for(node* child:n->children){
+			q.push_back(child);
+		}	
+			
+	}
+	cout<<".";
+}*/
+
 int main() {
 
     int arr[]={10,20,50,-1,60,-1,-1,30,70,-1,80,110,-1,120,-1,-1,90,-1,-1,40,100,-1,-1,-1};
@@ -109,9 +125,13 @@ int main() {
     cout<<"\n\nMaximum Element:"<<q;
     
     int w=heightTree(root);
-    cout<<"\n\nHeight of tree(in terms of edges):"<<w<<endl<<endl;
+    cout<<"\n\nHeight of tree(in terms of edges):"<<w<<endl<<endl;    
     
     cout<<"traversal : "<<endl;
     traversal(root);
+    
+    //cout<<"\n\nLevel order traversal\n";
+    //levelorder(root);
+    
     return 0;
 }

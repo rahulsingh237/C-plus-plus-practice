@@ -36,3 +36,26 @@ int sizeBT(TreeNode* n)
 {
     return n==nullptr ? -1:sizeBT(n->left)+sizeBT(n->right)+1;
 }
+
+int maximumBT(TreeNode* n)
+{
+    if(n==nullptr) return -1;
+
+    int l=maximumBT(n->left);
+    int r=maximumBT(n->right);
+
+    return max(max(l,r),n->val);
+}
+
+bool findBT(TreeNode* n,TreeNode* data)
+{
+    if(n==nullptr) return false;
+    if(n==data) return true;
+
+    return findBT(n->left,data) || findBT(n->right,data);
+}
+
+bool roottonode(TreeNode* n, TreeNode* p, vector<TreeNode*>& v)
+{
+    
+}

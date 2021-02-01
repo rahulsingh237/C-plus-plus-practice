@@ -3,8 +3,8 @@ using namespace std;
 
 class TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
 
     TreeNode(int val) {
         this->val = val;
@@ -25,8 +25,8 @@ int maximumBT(TreeNode* n)
 {
     if(n==nullptr) return -1;
 
-    int l=maximum(n->left);
-    int r=maximum(n->right);
+    int l=maximumBT(n->left);
+    int r=maximumBT(n->right);
 
     return max(max(l,r),n);
 }

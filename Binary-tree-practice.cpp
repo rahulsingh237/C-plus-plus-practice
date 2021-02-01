@@ -55,7 +55,20 @@ bool findBT(TreeNode* n,TreeNode* data)
     return findBT(n->left,data) || findBT(n->right,data);
 }
 
-bool roottonode(TreeNode* n, TreeNode* p, vector<TreeNode*>& v)
+bool roottonode(TreeNode* n, TreeNode* data, vector<TreeNode*>& v)
 {
+    if(n==nullptr) return false;
+    if(n==data){
+        v.push_back(n);
+        return false;
+    }
+    bool a=roottonode(n->left,data,v)||roottonode(n->right,data,v);
+    if(a) v.push_back(n);
+    return a;
+}
+
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    vector<TreeNode*> l1;
+    vector<TreeNode*> l2;
     
 }

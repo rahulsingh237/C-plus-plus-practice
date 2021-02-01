@@ -54,3 +54,53 @@ bool roottonode(TreeNode* n, TreeNode* data, vector<TreeNode*>& v)
     }
     return res;
 }
+
+vector<TreeNode*> roottonode(TreeNode* n, TreeNode* data)
+{
+    if(n==nullptr){
+        vector<TreeNode*> v;
+        return v;
+    }
+    if(n==data)
+    {
+        vector<TreeNode*> bes;
+        bes.push_back(n);
+        return bes;
+    }
+    vector<TreeNode*> l=roottonode(n->left,data);
+    if(l.size()>0)
+    {
+        l.push_back(n);
+        return l;
+    }
+
+    vector<TreeNode*> r=roottonode(n->right,data);
+    if(r.size()>0)
+    {
+        r.push_back(n);
+        return r;
+    }
+    return vector<TreeNode*>();
+}
+
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+    vector<TreeNode*> l1;
+    vector<TreeNode*> l2;
+
+    roottonode(root,p,l1);
+    roottonode(root,q,l2);
+
+    int i=l1.size()-1;
+    int j=l2.size()-1;
+
+    TreeNode* lca=NULL;
+
+    while(i>=0 && j>=0)
+    {
+        if(l1[i]!=l2[j]) break;
+        lca=l1[i];
+        i--;
+        j--;
+    }
+    return lca;
+}

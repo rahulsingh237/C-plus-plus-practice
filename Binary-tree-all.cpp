@@ -41,5 +41,15 @@ bool find(TreeNode* n, int data)
 
 bool roottonode(TreeNode* n, TreeNode* data, vector<TreeNode*>& v)
 {
-    
+    if(n==nullptr) return false;
+    if(n==data){
+        v.push_back(n);
+        return true;
+    }
+    bool res=roottonode(n->left,data,v) || roottonode(n->right,data,v);
+    if(res)
+    {
+        v.push_back(n);
+    }
+    return res;
 }

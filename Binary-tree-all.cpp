@@ -2,6 +2,7 @@
 using namespace std;
 
 class TreeNode {
+    public:
     int val;
     TreeNode* left;
     TreeNode* right;
@@ -28,7 +29,7 @@ int maximumBT(TreeNode* n)
     int l=maximumBT(n->left);
     int r=maximumBT(n->right);
 
-    return max(max(l,r),n);
+    return max(max(l,r),n->val);
 }
 
 bool find(TreeNode* n, int data)

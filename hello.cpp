@@ -16,23 +16,6 @@ using namespace std;
 #define rep(i,n) for(int i=0;i<n;i++)
 #define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 
-class TreeNode {
-    public:
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-
-    TreeNode(int val) {
-        this->val = val;
-    }
-};
-
-int heightBT(TreeNode* n)
-{
-    return n==nullptr ? 0:max(heightBT(n->left),heightBT(n->right))+1;
-}
-
-int sizeBT(TreeNode* n)
-{
-    return n==nullptr ? -1:sizeBT(n->left)+sizeBT(n->right)+1;
+int32_t main(){
+    cout<<"Hello its rahul. This repo is basically my c++ coding practice place";
 }

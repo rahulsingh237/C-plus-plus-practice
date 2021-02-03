@@ -156,3 +156,23 @@ int rootToNodeDistance(TreeNode* node, TreeNode* data) {
 }
 
 //https://www.geeksforgeeks.org/burn-the-binary-tree-starting-from-the-target-node/
+
+//543
+//-with heightBT function
+//-method1
+int diameterOfBinaryTree01(TreeNode* root) {
+    if(root==nullptr) return -1;
+    int leftTreeDia=diameterOfBinaryTree01(root->left);
+    int rightTreeDia=diameterOfBinaryTree01(root->right);
+
+    int leftheight=heightBT(root->left);
+    int rightheight=heightBT(root->right);
+
+    return max(max(leftTreeDia,rightTreeDia),leftheight+rightheight+2);
+}
+
+int diameterOfBinaryTree02(TreeNode* root)
+{
+    int left
+}
+//112,113

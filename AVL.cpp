@@ -63,7 +63,7 @@ TreeNode* getRotation(TreeNode* root)
     {
         if(root->left->bal>=1)
         {
-            rightrotation(root);
+            return rightrotation(root);
         }else{ //lr
             root->left=leftrotation(root->left);
             return rightrotation(root);
@@ -73,7 +73,7 @@ TreeNode* getRotation(TreeNode* root)
     {
         if(root->right->val<=-1)
         {
-            leftrotation(root);
+            return leftrotation(root);
         }else{
             root->right=rightrotation(root->right);
             return leftrotation(root);
@@ -92,6 +92,7 @@ TreeNode* insertIntoBST(TreeNode* root,int val)
     if(val>root->val) return insertIntoBST(root->right,val);
     else if(val<root->val) return insertIntoBST(root->left,val);
 
+    root=getRotation(root);
     return root;
 }
 
@@ -121,4 +122,17 @@ TreeNode* deleteNode(TreeNode* root, int key)
 
         root->left = deleteNode(root->left,maxValue);
     }
+
+    return getRotation(root);
+}
+
+//===============================================================
+
+TreeNode* postOrder(TreeNode* root)
+{
+    if(root==nullptr) return nullptr;
+    root->left=postOrder(root->left);
+    root->right=postOrder(root->right);
+
+    return getRotation(root);
 }

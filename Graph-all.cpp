@@ -20,7 +20,7 @@ const int N=7;
 
 vector<vector<edge>> graph(N);
 
-void addedge(int u, int v, int w)
+void addEdge(int u, int v, int w)
 {
     graph[u].push_back(edge(v,w));
     graph[v].push_back(edge(u,w));
@@ -95,6 +95,41 @@ int printAllPath(int src, int dest,vector<bool>& vis,string psf)
     }
     vis[src]=false;
     return count;
+}
+
+class heavyPair{
+    public:
+
+    int weight=0;
+    string path="";
+
+    heavyPair(int weight,string path)
+    {
+        this->weight=weight;
+        this->path=path;
+    }
+};
+
+heavyPair heavyPath(int src, int dest,vector<bool>& vis)
+{
+    if(src==dest)
+    {
+        heavyPair base(0,to_string(src));
+        return base;
+    }
+    vis[src]=true;
+    heavyPair myAns(-1e8,"");
+    for(edge e: graph[src])
+    {
+        heavyPair recAns=heavyPath(e.v,dest,vis);
+        if(recAns.weight+e.w>myAns.weight)
+        {
+            myAns.weight=recAns.weight+e.w;
+            myAns.path=to_string(src)+" "+recAns.path;
+        }
+    }
+    vis[src]=false;
+    return myAns;
 }
 
 void constructGraph()
